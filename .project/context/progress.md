@@ -18,6 +18,7 @@
 - Added local save of Forest 01 completion with best time, stars, best score, chest IDs, and level select completion display.
 - Added Forest 02: First Flip and wired GameScene to selected level ids.
 - Added standalone Three.js/Rapier 3D visual prototype at `/3d.html` with screenshot evidence.
+- Turned `/3d.html` into a first playable 3D loop with keyboard movement, camera follow, HUD, reset, and e2e movement coverage.
 
 ## Next
 

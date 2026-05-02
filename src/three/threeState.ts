@@ -2,6 +2,9 @@ export interface TurboTrails3DState {
   ready: boolean;
   meshCount: number;
   camera: 'orthographic-side';
+  bikeX?: number;
+  progress?: number;
+  grounded?: boolean;
 }
 
 declare global {
