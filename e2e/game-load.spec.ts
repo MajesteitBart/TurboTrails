@@ -42,3 +42,14 @@ test('opens garage placeholder from main menu', async ({ page }) => {
   await page.waitForTimeout(150);
   await expect(page.locator('canvas')).toBeVisible();
 });
+
+test('launches second forest level from level select', async ({ page }) => {
+  await page.goto('/');
+  await page.mouse.click(140, 325);
+  await page.waitForTimeout(100);
+  await page.mouse.click(180, 384);
+  await page.waitForTimeout(100);
+  await page.mouse.click(500, 360);
+  await page.waitForTimeout(250);
+  await expect(page.locator('canvas')).toBeVisible();
+});

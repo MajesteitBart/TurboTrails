@@ -14,7 +14,7 @@ export const worlds: WorldDefinition[] = [
     subtitle: 'Tutorial ramps, coins, and first checkpoint.',
     status: 'available',
     color: 0x3f8f59,
-    levelIds: ['forest-01-basics'],
+    levelIds: ['forest-01-basics', 'forest-02-first-flip'],
   },
   {
     id: 'warehouse',

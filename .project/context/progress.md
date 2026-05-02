@@ -16,6 +16,7 @@
 - Added basic results flow with time, coins, chests, stars, retry, and menu actions.
 - Added first navigation flow: Main Menu -> World Select -> Level Select -> Forest 01, plus Garage placeholder.
 - Added local save of Forest 01 completion with best time, stars, best score, chest IDs, and level select completion display.
+- Added Forest 02: First Flip and wired GameScene to selected level ids.
 
 ## Next
 

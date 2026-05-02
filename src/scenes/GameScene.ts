@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { forest01Basics } from '../data/levels/forest-01-basics';
+import { levels, type LevelId } from '../data/levels';
 import { vehicles } from '../data/vehicles';
 import { GAME_HEIGHT, isDebugEnabled } from '../game/constants';
 import { calculateScore, calculateStars } from '../systems/ScoreSystem';
@@ -28,6 +28,10 @@ interface CollectibleView {
   view: Phaser.GameObjects.GameObject & Phaser.GameObjects.Components.Visible;
 }
 
+interface GameScenePayload {
+  levelId?: LevelId;
+}
+
 export class GameScene extends Phaser.Scene {
   private inputController!: InputController;
   private bike!: Phaser.Physics.Matter.Image;
@@ -35,7 +39,7 @@ export class GameScene extends Phaser.Scene {
   private hudText!: Phaser.GameObjects.Text;
   private statusText!: Phaser.GameObjects.Text;
   private progressFill!: Phaser.GameObjects.Rectangle;
-  private readonly level: LevelDefinition = forest01Basics;
+  private level: LevelDefinition = levels['forest-01-basics'];
   private readonly vehicle: VehicleConfig = vehicles[0];
   private levelState: LevelRuntimeState = createLevelRuntimeState();
   private bikeContact: BikeContactState = createBikeContactState();
@@ -49,6 +53,10 @@ export class GameScene extends Phaser.Scene {
 
   constructor() {
     super('GameScene');
+  }
+
+  init(payload: GameScenePayload): void {
+    this.level = levels[payload.levelId ?? 'forest-01-basics'];
   }
 
   create(): void {
