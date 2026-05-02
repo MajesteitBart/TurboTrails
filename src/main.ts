@@ -1,5 +1,10 @@
-import Phaser from 'phaser';
-import { gameConfig } from './game/config';
+import { TurboTrailsApp } from './app/TurboTrailsApp';
 import './styles.css';
 
-new Phaser.Game(gameConfig);
+const root = document.querySelector<HTMLDivElement>('#app');
+
+if (!root) {
+  throw new Error('Missing #app root');
+}
+
+new TurboTrailsApp(root).start();
