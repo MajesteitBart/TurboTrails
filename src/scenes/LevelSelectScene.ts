@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { levels } from '../data/levels';
 import { worlds } from '../data/worlds';
 import { GAME_HEIGHT, GAME_WIDTH } from '../game/constants';
+import { setTestState } from '../game/testState';
 import { SaveManager } from '../systems/SaveManager';
 
 interface LevelSelectPayload {
@@ -22,6 +23,11 @@ export class LevelSelectScene extends Phaser.Scene {
   create(): void {
     const world = worlds.find((entry) => entry.id === this.worldId) ?? worlds[0];
     const saveGame = new SaveManager().load();
+    setTestState({
+      scene: 'LevelSelectScene',
+      worldId: world.id,
+      savedLevelIds: Object.keys(saveGame.levelRecords),
+    });
     this.add.rectangle(GAME_WIDTH / 2, GAME_HEIGHT / 2, GAME_WIDTH, GAME_HEIGHT, 0x12364a);
     this.add.rectangle(GAME_WIDTH / 2, 610, GAME_WIDTH, 220, 0x21794f);
     this.add.text(72, 62, world.title, {

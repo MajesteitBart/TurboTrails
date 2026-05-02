@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { vehicles } from '../data/vehicles';
 import { GAME_HEIGHT, GAME_WIDTH } from '../game/constants';
+import { setTestState } from '../game/testState';
 
 export class GarageScene extends Phaser.Scene {
   constructor() {
@@ -9,6 +10,7 @@ export class GarageScene extends Phaser.Scene {
 
   create(): void {
     const vehicle = vehicles[0];
+    setTestState({ scene: 'GarageScene' });
     this.add.rectangle(GAME_WIDTH / 2, GAME_HEIGHT / 2, GAME_WIDTH, GAME_HEIGHT, 0x12364a);
     this.add.rectangle(GAME_WIDTH / 2, 610, GAME_WIDTH, 220, 0x21794f);
     this.add.text(72, 62, 'Garage', {

@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { levels, type LevelId } from '../data/levels';
 import { vehicles } from '../data/vehicles';
 import { GAME_HEIGHT, isDebugEnabled } from '../game/constants';
+import { setTestState } from '../game/testState';
 import { calculateScore, calculateStars } from '../systems/ScoreSystem';
 import { createBikeContactState, type BikeContactState } from '../systems/BikeContact';
 import {
@@ -60,6 +61,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   create(): void {
+    setTestState({ scene: 'GameScene', levelId: this.level.id });
     this.startedAt = this.time.now;
     this.levelState = createLevelRuntimeState();
     this.bikeContact = createBikeContactState(this.time.now);

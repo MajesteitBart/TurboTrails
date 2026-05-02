@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { GAME_HEIGHT, GAME_WIDTH } from '../game/constants';
+import { setTestState } from '../game/testState';
 import { SaveManager } from '../systems/SaveManager';
 import type { LevelResults } from '../types/Results';
 
@@ -16,6 +17,7 @@ export class ResultsScene extends Phaser.Scene {
 
   create(): void {
     const results = this.results;
+    setTestState({ scene: 'ResultsScene', levelId: results?.levelId });
     this.add.rectangle(GAME_WIDTH / 2, GAME_HEIGHT / 2, GAME_WIDTH, GAME_HEIGHT, 0x12364a);
     this.add.rectangle(GAME_WIDTH / 2, 574, GAME_WIDTH, 292, 0x21794f);
     this.add.circle(1030, 132, 62, 0xffd166);

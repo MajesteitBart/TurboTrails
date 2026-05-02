@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { GAME_HEIGHT, GAME_WIDTH } from '../game/constants';
+import { setTestState } from '../game/testState';
 
 export class MainMenuScene extends Phaser.Scene {
   constructor() {
@@ -7,6 +8,7 @@ export class MainMenuScene extends Phaser.Scene {
   }
 
   create(): void {
+    setTestState({ scene: 'MainMenuScene' });
     this.add.rectangle(GAME_WIDTH / 2, GAME_HEIGHT / 2, GAME_WIDTH, GAME_HEIGHT, 0x153547);
     this.add.rectangle(GAME_WIDTH / 2, 560, GAME_WIDTH, 330, 0x2b744f);
     this.add.circle(145, 395, 95, 0x3f8f59);
