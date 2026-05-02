@@ -1,7 +1,7 @@
 ---
 name: WS-D Finish Results Flow
 owner: team
-status: planned
+status: done
 created: 2026-05-02T09:00:00Z
 updated: 2026-05-02T09:00:00Z
 ---

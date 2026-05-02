@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { forest01Basics } from '../data/levels/forest-01-basics';
 import { vehicles } from '../data/vehicles';
 import { GAME_HEIGHT, isDebugEnabled } from '../game/constants';
+import { calculateScore, calculateStars } from '../systems/ScoreSystem';
 import { createBikeContactState, type BikeContactState } from '../systems/BikeContact';
 import {
   applyBikeInput,
@@ -44,6 +45,7 @@ export class GameScene extends Phaser.Scene {
   private startedAt = 0;
   private checkpointX = this.level.start.x;
   private checkpointY = this.level.start.y;
+  private finishTransitionQueued = false;
 
   constructor() {
     super('GameScene');
@@ -58,6 +60,7 @@ export class GameScene extends Phaser.Scene {
     this.chests = 0;
     this.checkpointX = this.level.start.x;
     this.checkpointY = this.level.start.y;
+    this.finishTransitionQueued = false;
 
     this.matter.world.setBounds(0, 0, this.level.bounds.width, this.level.bounds.height);
     this.matter.world.setGravity(0, 1);
@@ -325,7 +328,40 @@ export class GameScene extends Phaser.Scene {
       this.levelState.finishReached = true;
       this.statusText.setText('FINISH! First playable route complete.');
       this.bike.setVelocity(0, 0);
+      this.queueResultsTransition();
     }
+  }
+
+  private queueResultsTransition(): void {
+    if (this.finishTransitionQueued) {
+      return;
+    }
+
+    this.finishTransitionQueued = true;
+    const timeMs = Math.max(0, Math.floor(this.time.now - this.startedAt));
+    const scoreInput = {
+      finished: true,
+      timeMs,
+      targetTimes: this.level.targetTimes,
+      coins: this.coins,
+      chests: this.chests,
+      stuntExp: 0,
+      crashed: false,
+    };
+
+    this.time.delayedCall(900, () => {
+      this.scene.start('ResultsScene', {
+        levelId: this.level.id,
+        levelTitle: this.level.title,
+        timeMs,
+        coins: this.coins,
+        totalCoins: countObjects(this.level, 'coin'),
+        chests: this.chests,
+        totalChests: countObjects(this.level, 'chest'),
+        stars: calculateStars(scoreInput),
+        score: calculateScore(scoreInput),
+      });
+    });
   }
 
   private updateHud(body: BikeMotionBody): void {
@@ -350,6 +386,7 @@ export class GameScene extends Phaser.Scene {
     this.bike.setRotation(this.level.start.rotation);
     this.bikeContact = createBikeContactState(this.time.now);
     this.levelState.finishReached = false;
+    this.finishTransitionQueued = false;
     this.statusText.setText('Restarted from checkpoint');
   }
 }

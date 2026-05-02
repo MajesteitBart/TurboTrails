@@ -31,8 +31,20 @@ export class MainMenuScene extends Phaser.Scene {
       color: '#e5e7eb',
     });
 
-    const start = this.add
-      .text(82, 292, 'Start Forest Run', {
+    this.createButton(82, 292, 'Play', () => this.scene.start('WorldSelectScene'));
+    this.createButton(82, 376, 'Garage', () => this.scene.start('GarageScene'));
+
+    this.add.rectangle(780, 468, 260, 54, 0xfacc15).setRotation(-0.16);
+    this.add.circle(705, 502, 26, 0x111827);
+    this.add.circle(860, 478, 26, 0x111827);
+    this.add.circle(705, 502, 14, 0xe5e7eb);
+    this.add.circle(860, 478, 14, 0xe5e7eb);
+    this.add.rectangle(780, 430, 72, 42, 0xef4444).setRotation(-0.16);
+  }
+
+  private createButton(x: number, y: number, label: string, onClick: () => void): void {
+    const button = this.add
+      .text(x, y, label, {
         fontFamily: 'Arial',
         fontSize: '34px',
         color: '#0f172a',
@@ -41,13 +53,6 @@ export class MainMenuScene extends Phaser.Scene {
       })
       .setInteractive({ useHandCursor: true });
 
-    start.on('pointerup', () => this.scene.start('GameScene'));
-
-    this.add.rectangle(780, 468, 260, 54, 0xfacc15).setRotation(-0.16);
-    this.add.circle(705, 502, 26, 0x111827);
-    this.add.circle(860, 478, 26, 0x111827);
-    this.add.circle(705, 502, 14, 0xe5e7eb);
-    this.add.circle(860, 478, 14, 0xe5e7eb);
-    this.add.rectangle(780, 430, 72, 42, 0xef4444).setRotation(-0.16);
+    button.on('pointerup', onClick);
   }
 }
