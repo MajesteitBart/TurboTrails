@@ -9,9 +9,11 @@ import {
   MeshBuilder,
   Quaternion,
   Scene,
+  SceneLoader,
   StandardMaterial,
   Vector3,
 } from '@babylonjs/core/Legacy/legacy';
+import '@babylonjs/loaders/glTF';
 import RAPIER from '@dimforge/rapier3d-compat';
 import { FollowCamera2D } from '../camera/FollowCamera2D';
 import { GameStateReporter } from '../app/state';
@@ -63,6 +65,7 @@ export class WarehouseLevel {
     this.createWarehouse();
     this.createTrack();
     this.createProps();
+    await this.createAssetProps();
     this.createCollectibles();
     this.bike = new RaycastBike(this.scene, this.world, START);
     this.cameraRig = new FollowCamera2D(this.scene.activeCamera as FreeCamera);
@@ -169,6 +172,35 @@ export class WarehouseLevel {
       puff.material = this.mats.smoke;
       puff.setEnabled(false);
       this.smokePuffs.push(puff);
+    }
+  }
+
+  private async createAssetProps(): Promise<void> {
+    await Promise.all([
+      this.loadVisualAsset('asset-crate-a', 'crate.glb', new Vector3(-17, 0.55, -2.65), 0.85, Math.PI * 0.08),
+      this.loadVisualAsset('asset-crate-b', 'crate-color.glb', new Vector3(-4.4, 2.3, -2.45), 0.75, -Math.PI * 0.12),
+      this.loadVisualAsset('asset-garage-door', 'door-garage.glb', new Vector3(-23.5, 1.6, 2.72), 1.15),
+      this.loadVisualAsset('asset-ladder', 'ladder-color.glb', new Vector3(18.5, 1.25, -2.58), 1, Math.PI * 0.5),
+      this.loadVisualAsset('asset-pipe-stack', 'pipe.glb', new Vector3(28.2, 1.05, -2.6), 1.15, Math.PI * 0.5),
+      this.loadVisualAsset('asset-window', 'wall-window-large.glb', new Vector3(8.5, 3.6, 2.73), 1.1),
+      this.loadVisualAsset('asset-wall-panel', 'wall.glb', new Vector3(15.3, 3.6, 2.73), 1.1),
+    ]);
+  }
+
+  private async loadVisualAsset(name: string, fileName: string, position: Vector3, scale: number, rotY = 0): Promise<void> {
+    try {
+      const result = await SceneLoader.ImportMeshAsync('', '/assets/models/kenney/prototype-kit/', fileName, this.scene);
+      result.meshes.forEach((mesh) => {
+        mesh.name = `${name}-${mesh.name}`;
+        mesh.isPickable = false;
+      });
+      const root = result.meshes[0];
+      if (!root) return;
+      root.position = position;
+      root.scaling.setAll(scale);
+      root.rotation.y = rotY;
+    } catch (error) {
+      console.warn(`Unable to load visual asset ${fileName}`, error);
     }
   }
 

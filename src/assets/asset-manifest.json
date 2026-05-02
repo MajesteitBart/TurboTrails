@@ -1,0 +1,93 @@
+[
+  {
+    "id": "kenney-prototype-kit-crate",
+    "sourceName": "Kenney Prototype Kit - crate.glb",
+    "sourceUrl": "https://kenney.nl/assets/prototype-kit",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "originalFormat": "GLB",
+    "runtimeFormat": "GLB",
+    "modified": false,
+    "modifications": [],
+    "attributionRequired": false
+  },
+  {
+    "id": "kenney-prototype-kit-crate-color",
+    "sourceName": "Kenney Prototype Kit - crate-color.glb",
+    "sourceUrl": "https://kenney.nl/assets/prototype-kit",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "originalFormat": "GLB",
+    "runtimeFormat": "GLB",
+    "modified": false,
+    "modifications": [],
+    "attributionRequired": false
+  },
+  {
+    "id": "kenney-prototype-kit-door-garage",
+    "sourceName": "Kenney Prototype Kit - door-garage.glb",
+    "sourceUrl": "https://kenney.nl/assets/prototype-kit",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "originalFormat": "GLB",
+    "runtimeFormat": "GLB",
+    "modified": false,
+    "modifications": [],
+    "attributionRequired": false
+  },
+  {
+    "id": "kenney-prototype-kit-ladder-color",
+    "sourceName": "Kenney Prototype Kit - ladder-color.glb",
+    "sourceUrl": "https://kenney.nl/assets/prototype-kit",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "originalFormat": "GLB",
+    "runtimeFormat": "GLB",
+    "modified": false,
+    "modifications": [],
+    "attributionRequired": false
+  },
+  {
+    "id": "kenney-prototype-kit-pipe",
+    "sourceName": "Kenney Prototype Kit - pipe.glb",
+    "sourceUrl": "https://kenney.nl/assets/prototype-kit",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "originalFormat": "GLB",
+    "runtimeFormat": "GLB",
+    "modified": false,
+    "modifications": [],
+    "attributionRequired": false
+  },
+  {
+    "id": "kenney-prototype-kit-wall-window-large",
+    "sourceName": "Kenney Prototype Kit - wall-window-large.glb",
+    "sourceUrl": "https://kenney.nl/assets/prototype-kit",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "originalFormat": "GLB",
+    "runtimeFormat": "GLB",
+    "modified": false,
+    "modifications": [],
+    "attributionRequired": false
+  },
+  {
+    "id": "kenney-prototype-kit-wall",
+    "sourceName": "Kenney Prototype Kit - wall.glb",
+    "sourceUrl": "https://kenney.nl/assets/prototype-kit",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "originalFormat": "GLB",
+    "runtimeFormat": "GLB",
+    "modified": false,
+    "modifications": [],
+    "attributionRequired": false
+  }
+]
