@@ -18,6 +18,11 @@ test('shows results flow actions', async ({ page }) => {
   await page.goto('/?results=1');
   await expect(page).toHaveTitle('Turbo Trails 2.0');
   await expect(page.locator('canvas')).toBeVisible();
+  await expect
+    .poll(async () =>
+      page.evaluate(() => localStorage.getItem('turbo-trails-2-save-v1')?.includes('forest-01-basics') ?? false),
+    )
+    .toBe(true);
   await page.mouse.click(130, 570);
   await page.waitForTimeout(150);
   await expect(page.locator('canvas')).toBeVisible();

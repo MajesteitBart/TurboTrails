@@ -1,7 +1,7 @@
 ---
 name: WS-F Local Progress Save
 owner: team
-status: planned
+status: done
 created: 2026-05-02T09:12:00Z
 updated: 2026-05-02T09:12:00Z
 ---

@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { levels } from '../data/levels';
 import { worlds } from '../data/worlds';
 import { GAME_HEIGHT, GAME_WIDTH } from '../game/constants';
+import { SaveManager } from '../systems/SaveManager';
 
 interface LevelSelectPayload {
   worldId?: string;
@@ -20,6 +21,7 @@ export class LevelSelectScene extends Phaser.Scene {
 
   create(): void {
     const world = worlds.find((entry) => entry.id === this.worldId) ?? worlds[0];
+    const saveGame = new SaveManager().load();
     this.add.rectangle(GAME_WIDTH / 2, GAME_HEIGHT / 2, GAME_WIDTH, GAME_HEIGHT, 0x12364a);
     this.add.rectangle(GAME_WIDTH / 2, 610, GAME_WIDTH, 220, 0x21794f);
     this.add.text(72, 62, world.title, {
@@ -36,6 +38,7 @@ export class LevelSelectScene extends Phaser.Scene {
 
     world.levelIds.forEach((levelId, index) => {
       const level = levels[levelId];
+      const record = saveGame.levelRecords[levelId];
       const x = 84 + index * 330;
       const y = 230;
       const card = this.add
@@ -55,12 +58,20 @@ export class LevelSelectScene extends Phaser.Scene {
         color: '#e5e7eb',
         wordWrap: { width: 240 },
       });
-      this.add.text(x + 22, y + 126, 'Play', {
+      this.add.text(x + 22, y + 126, record?.completed ? `Done ${record.stars}/3 stars` : 'Play', {
         fontFamily: 'Arial',
-        fontSize: '22px',
+        fontSize: record?.completed ? '18px' : '22px',
         color: '#facc15',
         fontStyle: 'bold',
       });
+      if (record?.bestTimeMs !== undefined) {
+        this.add.text(x + 172, y + 126, `${(record.bestTimeMs / 1000).toFixed(1)}s`, {
+          fontFamily: 'Arial',
+          fontSize: '18px',
+          color: '#d9f99d',
+          fontStyle: 'bold',
+        });
+      }
       card.on('pointerup', () => this.scene.start('GameScene', { levelId }));
     });
 

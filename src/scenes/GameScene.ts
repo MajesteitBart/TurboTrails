@@ -358,6 +358,9 @@ export class GameScene extends Phaser.Scene {
         totalCoins: countObjects(this.level, 'coin'),
         chests: this.chests,
         totalChests: countObjects(this.level, 'chest'),
+        chestIds: this.collectibles
+          .filter((collectible) => collectible.type === 'chest' && collectible.collected)
+          .map((collectible) => collectible.id),
         stars: calculateStars(scoreInput),
         score: calculateScore(scoreInput),
       });

@@ -15,6 +15,7 @@ export class BootScene extends Phaser.Scene {
         totalCoins: 9,
         chests: 1,
         totalChests: 1,
+        chestIds: ['chest-1'],
         stars: 2,
         score: 1420,
       });

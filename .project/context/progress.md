@@ -15,6 +15,7 @@
 - Added first bike feel pass using `VehicleConfig`, recent-ground jump gating, softer ground torque, and aligned bike visuals.
 - Added basic results flow with time, coins, chests, stars, retry, and menu actions.
 - Added first navigation flow: Main Menu -> World Select -> Level Select -> Forest 01, plus Garage placeholder.
+- Added local save of Forest 01 completion with best time, stars, best score, chest IDs, and level select completion display.
 
 ## Next
 

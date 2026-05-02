@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { GAME_HEIGHT, GAME_WIDTH } from '../game/constants';
+import { SaveManager } from '../systems/SaveManager';
 import type { LevelResults } from '../types/Results';
 
 export class ResultsScene extends Phaser.Scene {
@@ -34,6 +35,7 @@ export class ResultsScene extends Phaser.Scene {
       });
       return;
     }
+    new SaveManager().recordLevelResults(results);
 
     this.add.text(84, 158, results.levelTitle, {
       fontFamily: 'Arial',
@@ -41,7 +43,7 @@ export class ResultsScene extends Phaser.Scene {
       color: '#d9f99d',
     });
 
-    this.add.text(84, 230, `${'★'.repeat(results.stars)}${'☆'.repeat(3 - results.stars)}`, {
+    this.add.text(84, 230, `Stars: ${results.stars}/3`, {
       fontFamily: 'Arial',
       fontSize: '58px',
       color: '#facc15',
